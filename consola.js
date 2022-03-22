@@ -10,76 +10,133 @@ function computerplay(){
         return "Scissors";
     }
 }
-function singleround(userSelection,computeSelection){
+
+function playRound(userSelection,computeSelection){
     let userselection = userSelection.toLowerCase();
 
     if(userselection == "rock"){
         if(computeSelection == "Rock"){
-            console.log("Its a draw!"+userselection+ "its equal to" + computeSelection);
+            div.textContent = "Its a draw! "+userselection+ " its equal to " + computeSelection;
             return "draw";
         }
         if(computeSelection == "Paper"){
-            console.log("You lose!"+userselection+ "does not beat"+computeSelection);
-            return "lose";
+            div.textContent = "You lose! "+userselection+ " does not beat "+computeSelection;
+            return "lose"; 
         }
         if(computeSelection == "Scissors"){
-            console.log("You win!"+userselection+ "beats"+computeSelection);
+            div.textContent = "You win! "+userselection+ " beats "+computeSelection;
             return "win";
         }
     }
 
     if(userselection == "paper"){
         if(computeSelection == "Rock"){
-            console.log( "You win!"+userselection+ "beats"+computeSelection);
+            div.textContent = "You win! "+userselection+ " beats "+computeSelection;
             return "win";
         }
         if(computeSelection == "Paper"){
-            console.log( "Its a draws!"+userselection+ "its equal to" + computeSelection);
+            div.textContent = "Its a draws! "+userselection+ " its equal to " + computeSelection;
             return "draw";
         } 
         if(computeSelection == "Scissors"){
-            console.log( "You lose!"+userselection+ "does not beat"+computeSelection);
+            div.textContent = "You lose! "+userselection+ " does not beat "+computeSelection;
             return "lose";
         }
     }
     
     if(userselection == "scissors"){
         if(computeSelection == "Rock"){
-            console.log(  "You lose!"+userselection+ "does not beat"+computeSelection);
+            div.textContent = "You lose! "+userselection+ " does not beat "+computeSelection;
             return "lose";
         }
         if(computeSelection == "Paper"){
-            console.log(  "You win!"+userselection+ "beats"+computeSelection);
+            div.textContent = "You win! "+userselection+ " beats "+computeSelection;
             return "win";
         } 
         if(computeSelection == "Scissors"){
-            console.log(  "Its a draws!"+userselection+ "its equal to" + computeSelection);
+            div.textContent = "Its a draw! "+userselection+ " its equal to " + computeSelection;
             return "draw";
         }
     }
 }
 
-function game(){
-    let computer = 0;
-    let user = 0;
-    for(let i = 0; i<5 ;i++){
-        let usuario_input = window.prompt("please enter paper,scissor or rock please man please");
-        resultado = singleround(usuario_input,computerplay());
-        if(resultado == "win"){
-            user++;
-        }
-        if(resultado == "lose"){
-            computer++;
-        }
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const Scissors = document.querySelector('#scissors');
+const div = document.querySelector('#results');
+const div2 = document.querySelector('#score');
+const div3 = document.querySelector('#ganador');
+
+let USERscore = 0;
+let COMPUTERscore = 0;
+
+let clickRock = (e) =>{
+    let resultado = playRound('rock',computerplay());
+    if(resultado == "win"){
+        USERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
     }
-    if(user > computer){
-        console.log("user wins")
+    if(resultado == "lose"){
+        COMPUTERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
     }
-    if(user < computer){
-        console.log("computer wins")
+    if(USERscore == 5){
+        div3.textContent = 'GANADOR!: USUARIO';
+        USERscore = 0;
+        COMPUTERscore = 0;
     }
-    if(user == computer){
-        onsole.log("its a draw")
+    if(COMPUTERscore == 5){
+        div3.textContent = 'GANADOR!: COMPUTADORA';
+        USERscore = 0;
+        COMPUTERscore = 0;
     }
-}
-game();
+};
+rock.addEventListener('click',clickRock);
+
+let clickScissors = (e) =>{
+    let resultado = playRound('scissors',computerplay());
+    if(resultado == "win"){
+        USERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
+    }
+    if(resultado == "lose"){
+        COMPUTERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
+    }
+    if(USERscore == 5){
+        div3.textContent = 'GANADOR!: USUARIO';
+        USERscore = 0;
+        COMPUTERscore = 0;
+    }
+    if(COMPUTERscore == 5){
+        div3.textContent = 'GANADOR!: COMPUTADORA';
+        USERscore = 0;
+        COMPUTERscore = 0;
+    }
+};
+Scissors.addEventListener('click',clickScissors);
+
+let clickpaper = (e) =>{
+    let resultado = playRound('paper',computerplay());
+    if(resultado == "win"){
+        USERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
+    }
+    if(resultado == "lose"){
+        COMPUTERscore++;
+        div2.textContent = 'user: ' + USERscore + '/' + 'computer: ' + COMPUTERscore;
+    }
+    if(USERscore == 5){
+        div3.textContent = 'GANADOR!: USUARIO';
+        USERscore = 0;
+        COMPUTERscore = 0;
+    }
+    if(COMPUTERscore == 5){
+        div3.textContent = 'GANADOR!: COMPUTADORA';
+        USERscore = 0;
+        COMPUTERscore = 0;
+    }
+};
+paper.addEventListener('click',clickpaper);
+
+
